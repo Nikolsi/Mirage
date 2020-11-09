@@ -13,12 +13,7 @@ public:
     }
 };
 
-Engine::Application *CreateApplication()
+Engine::Application *Engine::CreateApplication()
 {
     return new Sandbox();
-}
-
-int main()
-{
-    return 0;
 }
