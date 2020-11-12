@@ -1,6 +1,6 @@
-#include "Engine.h"
+#include <mirage.h>
 
-class Sandbox : public Engine::Application
+class Sandbox : public Mirage::Application
 {
 private:
     /* data */
