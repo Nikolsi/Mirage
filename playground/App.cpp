@@ -1,5 +1,5 @@
 #include <iostream>
-#include "mirage.h"
+#include <mirage.h>
 
 class Sandbox : public Mirage::Application
 {
