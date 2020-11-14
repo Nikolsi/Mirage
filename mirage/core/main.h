@@ -1,6 +1,6 @@
 #pragma once
 
-extern Mirage::Application *Mirage::CreateApplication();
+Mirage::Application *Mirage::CreateApplication();
 
 int main(int argc, char **argv)
 {

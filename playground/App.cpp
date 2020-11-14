@@ -1,4 +1,5 @@
-#include <mirage.h>
+#include <iostream>
+#include "mirage.h"
 
 class Sandbox : public Mirage::Application
 {
@@ -13,7 +14,8 @@ public:
     }
 };
 
-Engine::Application *Engine::CreateApplication()
+Mirage::Application *Mirage::CreateApplication()
 {
+    std::cout << "Hello";
     return new Sandbox();
 }
