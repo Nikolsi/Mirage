@@ -1,21 +1,20 @@
 #include <iostream>
 #include <mirage.h>
 
-class Sandbox : public Mirage::Application
+class Template : public Mirage::Application
 {
 private:
     /* data */
 public:
-    Sandbox(/* args */)
+    Template(/* args */)
     {
     }
-    ~Sandbox()
+    ~Template()
     {
     }
 };
 
 Mirage::Application *Mirage::CreateApplication()
 {
-    std::cout << "Hello";
-    return new Sandbox();
+    return new Template();
 }
