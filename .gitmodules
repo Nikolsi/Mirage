@@ -2,7 +2,3 @@
 [submodule "dependencies/glm"]
 	path = dependencies/glm
 	url = git@github.com:g-truc/glm.git
-[submodule "dependencies/googletest"]
-	path = dependencies/googletest
-	url = git@github.com:google/googletest.git
-	branch = origin/release-1.10.0
