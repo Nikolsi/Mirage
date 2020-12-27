@@ -2,8 +2,14 @@
 function(buildExample EXAMPLE_NAME)
 
     set(EXAMPLE_FOLDER ${CMAKE_CURRENT_SOURCE_DIR}/${EXAMPLE_NAME})
-    set(RESOURCES_FOLDER "${EXAMPLE_FOLDER}/resources")
 	message(STATUS "Generating project file for example in ${EXAMPLE_FOLDER}")
+
+    set(RESOURCES_FOLDER "${EXAMPLE_FOLDER}/resources")
+    if(NOT EXISTS ${RESOURCES_FOLDER})
+        message(STATUS "No resources folder was found in the project")
+    else()
+        message(STATUS "Resources folder was found in the project")
+    endif()
 
     # link all source files
     file(GLOB_RECURSE EXAMPLE_APP_SOURCE ${EXAMPLE_FOLDER}/*.cpp ${EXAMPLE_FOLDER}/*.h)
