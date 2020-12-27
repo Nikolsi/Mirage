@@ -2,6 +2,9 @@
 function(buildExample EXAMPLE_NAME)
 
     set(EXAMPLE_FOLDER ${CMAKE_CURRENT_SOURCE_DIR}/${EXAMPLE_NAME})
+    if(NOT EXISTS ${EXAMPLE_FOLDER})
+        message(FATAL_ERROR "Project ${EXAMPLE_NAME} was not found")
+    endif()
 	message(STATUS "Generating project file for example in ${EXAMPLE_FOLDER}")
 
     set(RESOURCES_FOLDER "${EXAMPLE_FOLDER}/resources")
@@ -13,6 +16,10 @@ function(buildExample EXAMPLE_NAME)
 
     # link all source files
     file(GLOB_RECURSE EXAMPLE_APP_SOURCE ${EXAMPLE_FOLDER}/*.cpp ${EXAMPLE_FOLDER}/*.h)
+    # main() entry point
+    if(NOT EXISTS ${EXAMPLE_FOLDER}/main.cpp AND NOT EXISTS ${EXAMPLE_FOLDER}/${EXAMPLE_NAME}.cpp)
+        message(FATAL_ERROR "Project must contain either main.cpp or ${EXAMPLE_NAME}.cpp with the main() function")
+    endif()
 
     # link forked dependencies
     include_directories(../dependencies)
