@@ -2,11 +2,11 @@ file(GLOB_RECURSE MIRAGE_SRC "*.cpp" "*.h")
 
 add_library(mirage SHARED ${MIRAGE_SRC})
 
-# Dependencies
+# dependencies
 include_directories(../dependencies)
 include_directories(../dependencies/glm)
 
-# Libraries
+# libraries
 find_package(Vulkan REQUIRED)
 set(LIBRARIES "Vulkan::Vulkan")
 target_link_libraries(mirage Vulkan::Vulkan)
