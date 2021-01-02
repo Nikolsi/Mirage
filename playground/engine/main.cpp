@@ -8,6 +8,7 @@ private:
 public:
     Template(/* args */)
     {
+        std::cout << "Mirage Application\n";
     }
     ~Template()
     {
