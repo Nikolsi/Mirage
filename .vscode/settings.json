@@ -1,4 +1,9 @@
 {
+    "cSpell.words": [
+        "vulkan",
+        "glfw",
+        "sdl"
+    ],
     "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
     "cmake.configureOnOpen": true
 }
