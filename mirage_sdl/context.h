@@ -1,13 +1,12 @@
 #pragma once
 
 #include <memory>
-#include <core/context.h>
+#include <mirage.h>
 
 struct SDL_Window;
 
 namespace Mirage
 {
-
     namespace SDL
     {
         class Context : Mirage::IContext
@@ -19,7 +18,6 @@ namespace Mirage
         private:
             /* data */
         };
-
     } // namespace SDL
 
 } // namespace Mirage

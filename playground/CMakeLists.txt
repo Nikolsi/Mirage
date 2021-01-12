@@ -60,7 +60,6 @@ function(buildExample EXAMPLE_NAME)
         find_package(SDL2 REQUIRED)
         message (STATUS "SDL2_INCLUDE_DIR" ${SDL2_INCLUDE_DIRS})
         message (STATUS "SDL2_LIBRARY" ${SDL2_LIBRARIES})
-
         include_directories(${SDL2_INCLUDE_DIRS})
         target_link_libraries(${EXAMPLE_NAME} LINK_PUBLIC ${SDL2_LIBRARIES})
 
