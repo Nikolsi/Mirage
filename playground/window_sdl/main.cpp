@@ -1,25 +1,25 @@
 #include <iostream>
-#include <memory>
+// #include <memory>
 
-#include <mirage.h>       // core
-#include <mirage_sdl.hpp> // sdl specific
+// #include <mirage.h> // core
+// #include <mirage_sdl.hpp> // sdl specific
 
-// #include <SDL.h>
+#include <SDL.h>
 
-std::shared_ptr<SDL_Window> createApplicationSDL();
+SDL_Window *createApplicationSDL();
 
-void destroyApplicationSDL(std::shared_ptr<SDL_Window> window);
+void destroyApplicationSDL(SDL_Window *window);
 
 int main(int argc, char **argv)
 {
     // create window
     auto window = createApplicationSDL();
 
-    // create rendering context
-    auto context = Mirage::SDL::Context(window);
+    // // create rendering context
+    // auto context = Mirage::SDL::Context(window);
 
-    // create rendering engine
-    auto engine = Mirage::Engine(context);
+    // // create rendering engine
+    // auto engine = Mirage::Engine(context);
 
     // event loop
     bool done = false;
@@ -36,7 +36,7 @@ int main(int argc, char **argv)
     }
 
     // destroy rendering engine
-    engine.dispose();
+    // engine.dispose();
 
     // destroy window
     destroyApplicationSDL(window);
@@ -44,23 +44,22 @@ int main(int argc, char **argv)
     return 0;
 }
 
-std::shared_ptr<SDL_Window> createApplicationSDL()
+SDL_Window *createApplicationSDL()
 {
     // setup SDL
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_GAMECONTROLLER) != 0)
     {
         printf("Error: %s\n", SDL_GetError());
-        return -1;
+        // return -1;
     }
 
     // setup window
     SDL_WindowFlags window_flags = (SDL_WindowFlags)(SDL_WINDOW_VULKAN | SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI);
-    SDL_Window *window = SDL_CreateWindow("Mirage + SDL2", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, window_flags);
 
-    return std::make_shared<SDL_Window>(window)
+    return SDL_CreateWindow("Mirage + SDL2", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, window_flags);
 }
 
-void destroyApplicationSDL(std::shared_ptr<SDL_Window> window)
+void destroyApplicationSDL(SDL_Window *window)
 {
     SDL_DestroyWindow(window);
     SDL_Quit();

@@ -52,6 +52,29 @@ function(buildExample EXAMPLE_NAME)
     # link "Mirage Engine" library
     target_link_libraries(${EXAMPLE_NAME} LINK_PUBLIC mirage)
 
+    # link additional libraries
+    if (EXAMPLE_FOLDER MATCHES "([Ss][Dd][Ll])")
+        message(STATUS "sdl folder requires SDL lib to be linked")
+
+        # sdl2 dependencies
+        find_package(SDL2 REQUIRED)
+        message (STATUS "SDL2_INCLUDE_DIR" ${SDL2_INCLUDE_DIRS})
+        message (STATUS "SDL2_LIBRARY" ${SDL2_LIBRARIES})
+
+        include_directories(${SDL2_INCLUDE_DIRS})
+        target_link_libraries(${EXAMPLE_NAME} LINK_PUBLIC ${SDL2_LIBRARIES})
+
+        # TODO: add mirage_sdl library
+        # target_link_libraries(${EXAMPLE_NAME} LINK_PUBLIC mirage_sdl)
+    endif()
+    if (EXAMPLE_FOLDER MATCHES "([Gg][Ll][Ff][Ww])")
+        message(STATUS "glfw folder requires GLFW lib to be linked")
+
+        # TODO: add mirage_glfw library
+        # target_link_libraries(${EXAMPLE_NAME} LINK_PUBLIC mirage_glfw)
+    endif()
+
+
 endfunction(buildExample)
 
 # build all examples: buildExamples()
@@ -66,6 +89,7 @@ endfunction(buildExamples)
 set(EXAMPLES
     engine
     vulkan
+    window_sdl
     # <---- add more examples here
 )
 
