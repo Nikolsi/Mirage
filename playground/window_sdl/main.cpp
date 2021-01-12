@@ -1,17 +1,32 @@
 #include <iostream>
-// #include <memory>
+#include <memory>
 
 // #include <mirage.h> // core
 // #include <mirage_sdl.hpp> // sdl specific
 
 #include <SDL.h>
 
-SDL_Window *createApplicationSDL();
+std::shared_ptr<SDL_Window> createApplicationSDL()
+{
+    // setup window
+    SDL_WindowFlags window_flags = (SDL_WindowFlags)(SDL_WINDOW_VULKAN | SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI);
 
-void destroyApplicationSDL(SDL_Window *window);
+    return std::shared_ptr<SDL_Window>(
+        // window constructor
+        SDL_CreateWindow("Mirage + SDL2", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, window_flags),
+        // window destructor
+        SDL_DestroyWindow);
+}
 
 int main(int argc, char **argv)
 {
+    // setup SDL
+    if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_GAMECONTROLLER) != 0)
+    {
+        printf("Error: %s\n", SDL_GetError());
+        return -1;
+    }
+
     // create window
     auto window = createApplicationSDL();
 
@@ -30,7 +45,7 @@ int main(int argc, char **argv)
         {
             if (event.type == SDL_QUIT)
                 done = true;
-            if (event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_CLOSE && event.window.windowID == SDL_GetWindowID(window))
+            if (event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_CLOSE && event.window.windowID == SDL_GetWindowID(window.get()))
                 done = true;
         }
     }
@@ -39,28 +54,10 @@ int main(int argc, char **argv)
     // engine.dispose();
 
     // destroy window
-    destroyApplicationSDL(window);
+    window.reset(); // deletes managed SDL Window object
+
+    // destroy SDL
+    SDL_Quit();
 
     return 0;
-}
-
-SDL_Window *createApplicationSDL()
-{
-    // setup SDL
-    if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_GAMECONTROLLER) != 0)
-    {
-        printf("Error: %s\n", SDL_GetError());
-        // return -1;
-    }
-
-    // setup window
-    SDL_WindowFlags window_flags = (SDL_WindowFlags)(SDL_WINDOW_VULKAN | SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI);
-
-    return SDL_CreateWindow("Mirage + SDL2", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, window_flags);
-}
-
-void destroyApplicationSDL(SDL_Window *window)
-{
-    SDL_DestroyWindow(window);
-    SDL_Quit();
 }
