@@ -1,8 +1,8 @@
 #include <iostream>
 #include <memory>
 
-// #include <mirage.h> // core
-// #include <mirage_sdl.hpp> // sdl specific
+#include <mirage.h>       // core
+#include <mirage_sdl.hpp> // sdl specific
 
 #include <SDL.h>
 
@@ -30,8 +30,8 @@ int main(int argc, char **argv)
     // create window
     auto window = createApplicationSDL();
 
-    // // create rendering context
-    // auto context = Mirage::SDL::Context(window);
+    // create rendering context
+    Mirage::IContext context = Mirage::SDL::Context(window);
 
     // // create rendering engine
     // auto engine = Mirage::Engine(context);

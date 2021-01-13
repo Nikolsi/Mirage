@@ -15,7 +15,7 @@ function(buildExample EXAMPLE_NAME)
     endif()
 
     # link all source files
-    file(GLOB_RECURSE EXAMPLE_APP_SOURCE ${EXAMPLE_FOLDER}/*.cpp ${EXAMPLE_FOLDER}/*.h)
+    file(GLOB_RECURSE EXAMPLE_APP_SOURCE ${EXAMPLE_FOLDER}/*.cpp ${EXAMPLE_FOLDER}/*.h ${EXAMPLE_FOLDER}/*.hpp)
     # main() entry point
     if(NOT EXISTS ${EXAMPLE_FOLDER}/main.cpp AND NOT EXISTS ${EXAMPLE_FOLDER}/${EXAMPLE_NAME}.cpp)
         message(FATAL_ERROR "Project must contain either main.cpp or ${EXAMPLE_NAME}.cpp with the main() function")
@@ -63,8 +63,9 @@ function(buildExample EXAMPLE_NAME)
         include_directories(${SDL2_INCLUDE_DIRS})
         target_link_libraries(${EXAMPLE_NAME} LINK_PUBLIC ${SDL2_LIBRARIES})
 
-        # TODO: add mirage_sdl library
-        # target_link_libraries(${EXAMPLE_NAME} LINK_PUBLIC mirage_sdl)
+        # add mirage_sdl library
+        include_directories(../mirage_sdl)
+        target_link_libraries(${EXAMPLE_NAME} LINK_PUBLIC mirage_sdl)
     endif()
     if (EXAMPLE_FOLDER MATCHES "([Gg][Ll][Ff][Ww])")
         message(STATUS "glfw folder requires GLFW lib to be linked")

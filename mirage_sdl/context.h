@@ -9,7 +9,7 @@ namespace Mirage
 {
     namespace SDL
     {
-        class Context : Mirage::IContext
+        class Context : public IContext
         {
         public:
             Context(std::shared_ptr<SDL_Window> window);

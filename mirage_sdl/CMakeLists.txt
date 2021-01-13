@@ -10,4 +10,4 @@ include_directories(mirage_sdl ${SDL2_INCLUDE_DIRS})
 target_link_libraries(mirage_sdl ${SDL2_LIBRARIES})
 
 # link "Mirage Engine" library to have an access to interfaces
-target_link_libraries(mirage)
+target_link_libraries(mirage_sdl mirage)

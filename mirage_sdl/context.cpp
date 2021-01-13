@@ -8,9 +8,9 @@ namespace Mirage
 {
     namespace SDL
     {
-        Context::Context(std::shared_ptr<SDL_Window> window)
+        Context::Context(std::shared_ptr<SDL_Window> window) : IContext()
         {
-            printf("SDL rendering context initialized");
+            std::cout << "SDL rendering context initialized\n";
         }
 
         Context::~Context()
