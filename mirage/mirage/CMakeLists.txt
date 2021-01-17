@@ -13,8 +13,8 @@ if(${Vulkan_FOUND})
 
     target_include_directories(mirage
         PUBLIC
+            ../dependencies/glm
             ../
-            ${SDL2_INCLUDE_DIRS}
     )
 
     target_include_directories(mirage
@@ -31,7 +31,3 @@ else()
     message (STATUS "Vulkan was not found in the system")
 
 endif()
-
-# dependencies
-include_directories(../dependencies)
-include_directories(../dependencies/glm)
