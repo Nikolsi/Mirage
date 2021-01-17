@@ -45,11 +45,13 @@ function(buildExample EXAMPLE_NAME)
     # create executable application
     add_executable(${EXAMPLE_NAME} ${EXAMPLE_APP_SOURCE} ${SHADERS} ${TEXTURES} ${MODELS} ${READMES})
 
+    # include dependencies
     target_include_directories(${EXAMPLE_NAME}
         PRIVATE
             ../dependencies/glm
     )
 
+    # link dependencies
     target_link_libraries(${EXAMPLE_NAME}
         PRIVATE
             mirage                  # link Mirage to access public interfaces
@@ -59,8 +61,8 @@ function(buildExample EXAMPLE_NAME)
     if (EXAMPLE_FOLDER MATCHES "([Ss][Dd][Ll])")
         message(STATUS "Folder requires SDL lib to be linked")
 
-        # SDL2 dependency
         find_package(SDL2 REQUIRED)
+
         target_include_directories(${EXAMPLE_NAME}
             PRIVATE
                 ${SDL2_INCLUDE_DIRS}

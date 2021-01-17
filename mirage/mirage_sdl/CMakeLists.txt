@@ -2,7 +2,6 @@
 find_package(SDL2 REQUIRED)
 
 if(${SDL2_FOUND})
-
     message (STATUS "SDL2 was found in the system")
     message (STATUS "SDL2_INCLUDE_DIR " ${SDL2_INCLUDE_DIRS})
     message (STATUS "SDL2_LIBRARY " ${SDL2_LIBRARIES})

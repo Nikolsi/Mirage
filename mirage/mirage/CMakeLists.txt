@@ -6,7 +6,6 @@ add_library(mirage SHARED ${MIRAGE_SRC})
 find_package(Vulkan REQUIRED)
 
 if(${Vulkan_FOUND})
-
     message (STATUS "Vulkan was found in the system")
     message (STATUS "Vulkan_INCLUDE_DIRS " ${Vulkan_INCLUDE_DIRS})
     message (STATUS "Vulkan_LIBRARIES " ${Vulkan_LIBRARIES})
@@ -27,7 +26,5 @@ if(${Vulkan_FOUND})
     )
 
 else()
-
     message (STATUS "Vulkan was not found in the system")
-
 endif()
