@@ -21,10 +21,6 @@ function(buildExample EXAMPLE_NAME)
         message(FATAL_ERROR "Project must contain either main.cpp or ${EXAMPLE_NAME}.cpp with the main() function")
     endif()
 
-    # link forked dependencies
-    include_directories(../dependencies)
-    include_directories(../dependencies/glm)
-
     # link libraries
     find_package(Vulkan REQUIRED)
 
@@ -49,12 +45,17 @@ function(buildExample EXAMPLE_NAME)
     # create executable application
     add_executable(${EXAMPLE_NAME} ${EXAMPLE_APP_SOURCE} ${SHADERS} ${TEXTURES} ${MODELS} ${READMES})
 
+    target_include_directories(${EXAMPLE_NAME}
+        PRIVATE
+            ../dependencies/glm
+    )
+
     target_link_libraries(${EXAMPLE_NAME}
         PRIVATE
             mirage                  # link Mirage to access public interfaces
     )
 
-    # link additional libraries
+    # link SDL-related libraries
     if (EXAMPLE_FOLDER MATCHES "([Ss][Dd][Ll])")
         message(STATUS "Folder requires SDL lib to be linked")
 
@@ -72,11 +73,17 @@ function(buildExample EXAMPLE_NAME)
         )
 
     endif()
+
+    # link GLFW-related libraries
     if (EXAMPLE_FOLDER MATCHES "([Gg][Ll][Ff][Ww])")
         message(STATUS "Folder requires GLFW lib to be linked")
 
-        # TODO: add mirage_glfw library
-        # target_link_libraries(${EXAMPLE_NAME} PRIVATE mirage_glfw)
+        target_link_libraries(${EXAMPLE_NAME}
+            PRIVATE
+                ${GLFW_LIBRARIES}   # link GLFW
+                mirage_glfw         # link Mirage GLFW utility library
+        )
+
     endif()
 
 
@@ -93,6 +100,7 @@ endfunction(buildExamples)
 # playground apps
 set(EXAMPLES
     engine
+    glm
     vulkan
     window_sdl
     # <---- add more examples here
