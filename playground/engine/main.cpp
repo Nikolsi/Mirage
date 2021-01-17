@@ -1,21 +1,7 @@
 #include <iostream>
-#include <mirage.h>
 
-class Template : public Mirage::Application
+int main(int argc, char **argv)
 {
-private:
-    /* data */
-public:
-    Template(/* args */)
-    {
-        std::cout << "Mirage Application\n";
-    }
-    ~Template()
-    {
-    }
-};
-
-Mirage::Application *Mirage::CreateApplication()
-{
-    return new Template();
+    std::cout << "Mirage Application\n";
+    return 0;
 }

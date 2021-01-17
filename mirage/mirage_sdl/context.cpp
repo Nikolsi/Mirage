@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "context.h"
+#include "context.hpp"
 
 #include <SDL.h>
 

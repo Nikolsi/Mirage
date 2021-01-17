@@ -49,6 +49,9 @@ function(buildExample EXAMPLE_NAME)
     # create executable application
     add_executable(${EXAMPLE_NAME} ${EXAMPLE_APP_SOURCE} ${SHADERS} ${TEXTURES} ${MODELS} ${READMES})
 
+    # include "Mirage" libraries
+    include_directories(../mirage)
+
     # link "Mirage Engine" library
     target_link_libraries(${EXAMPLE_NAME} LINK_PUBLIC mirage)
 
@@ -63,8 +66,7 @@ function(buildExample EXAMPLE_NAME)
         include_directories(${SDL2_INCLUDE_DIRS})
         target_link_libraries(${EXAMPLE_NAME} LINK_PUBLIC ${SDL2_LIBRARIES})
 
-        # add mirage_sdl library
-        include_directories(../mirage_sdl)
+        # link "Mirage SDL" library
         target_link_libraries(${EXAMPLE_NAME} LINK_PUBLIC mirage_sdl)
     endif()
     if (EXAMPLE_FOLDER MATCHES "([Gg][Ll][Ff][Ww])")

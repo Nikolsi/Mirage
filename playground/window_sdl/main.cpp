@@ -1,8 +1,8 @@
 #include <iostream>
 #include <memory>
 
-#include <mirage.h>       // core
-#include <mirage_sdl.hpp> // sdl specific
+#include <mirage/context.hpp>     // Mirage Rendering context interface
+#include <mirage_sdl/context.hpp> // SDL Rendering context -> Mirage Rendering context.
 
 #include <SDL.h>
 

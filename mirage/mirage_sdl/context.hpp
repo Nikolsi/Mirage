@@ -1,7 +1,7 @@
 #pragma once
 
 #include <memory>
-#include <mirage.h>
+#include <mirage/context.hpp>
 
 struct SDL_Window;
 
