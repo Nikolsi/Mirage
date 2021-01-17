@@ -49,11 +49,8 @@ function(buildExample EXAMPLE_NAME)
     # create executable application
     add_executable(${EXAMPLE_NAME} ${EXAMPLE_APP_SOURCE} ${SHADERS} ${TEXTURES} ${MODELS} ${READMES})
 
-    # include "Mirage" libraries
-    include_directories(../mirage)
-
     # link "Mirage Engine" library
-    target_link_libraries(${EXAMPLE_NAME} LINK_PUBLIC mirage)
+    target_link_libraries(${EXAMPLE_NAME} PRIVATE mirage)
 
     # link additional libraries
     if (EXAMPLE_FOLDER MATCHES "([Ss][Dd][Ll])")
@@ -64,16 +61,16 @@ function(buildExample EXAMPLE_NAME)
         message (STATUS "SDL2_INCLUDE_DIR" ${SDL2_INCLUDE_DIRS})
         message (STATUS "SDL2_LIBRARY" ${SDL2_LIBRARIES})
         include_directories(${SDL2_INCLUDE_DIRS})
-        target_link_libraries(${EXAMPLE_NAME} LINK_PUBLIC ${SDL2_LIBRARIES})
+        target_link_libraries(${EXAMPLE_NAME} PRIVATE ${SDL2_LIBRARIES})
 
         # link "Mirage SDL" library
-        target_link_libraries(${EXAMPLE_NAME} LINK_PUBLIC mirage_sdl)
+        target_link_libraries(${EXAMPLE_NAME} PRIVATE mirage_sdl)
     endif()
     if (EXAMPLE_FOLDER MATCHES "([Gg][Ll][Ff][Ww])")
         message(STATUS "glfw folder requires GLFW lib to be linked")
 
         # TODO: add mirage_glfw library
-        # target_link_libraries(${EXAMPLE_NAME} LINK_PUBLIC mirage_glfw)
+        # target_link_libraries(${EXAMPLE_NAME} PRIVATE mirage_glfw)
     endif()
 
 
