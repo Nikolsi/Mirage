@@ -1,7 +1,9 @@
 {
     "recommendations": [
+        "ms-vscode.cmake-tools",
         "ms-vscode.cpptools",
         "streetsidesoftware.code-spell-checker",
-        "eamodio.gitlens"
+        "eamodio.gitlens",
+        "twxs.cmake"
     ]
 }
