@@ -31,8 +31,7 @@ int main(int argc, char **argv)
     auto window = createApplicationSDL();
 
     // create rendering context
-    Mirage::IContext context = Mirage::SDL::Context(window);
-
+    std::shared_ptr<Mirage::IContext> context = Mirage::SDL::Context::create(window);
     // // create rendering engine
     // auto engine = Mirage::Engine(context);
 

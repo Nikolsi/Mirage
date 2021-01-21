@@ -8,8 +8,7 @@ namespace Mirage
     class IContext
     {
     public:
-        IContext();
-        virtual ~IContext();
+        virtual ~IContext() = default;
 
     private:
         /* data */

@@ -12,10 +12,16 @@ namespace Mirage
         class Context : public IContext
         {
         public:
-            Context(std::shared_ptr<SDL_Window> window);
-            ~Context();
+            static std::shared_ptr<Context> create(std::shared_ptr<SDL_Window> window)
+            {
+                return std::shared_ptr<Context>(new Context(window));
+            }
+
+        public:
+            ~Context() override;
 
         private:
+            Context(std::shared_ptr<SDL_Window> window);
             /* data */
         };
     } // namespace SDL
