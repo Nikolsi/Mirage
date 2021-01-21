@@ -1,1 +1,7 @@
+# Ignore default build folder
 build/
+.ccls_cache
+
+# Ignore files
+**/*.DS_Store
+compile_commands.json
