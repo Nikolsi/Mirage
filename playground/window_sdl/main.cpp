@@ -32,6 +32,7 @@ int main(int argc, char **argv)
 
     // create rendering context
     std::shared_ptr<Mirage::IContext> context = Mirage::SDL::Context::create(window);
+
     // // create rendering engine
     // auto engine = Mirage::Engine(context);
 
