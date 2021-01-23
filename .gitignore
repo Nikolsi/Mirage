@@ -1,1 +1,15 @@
+# Ignore default build folder
 build/
+.vs/
+.ccls_cache/
+
+# Ignore files
+**/*.DS_Store
+
+# Ignore CMake build in root ./
+CMakeCache.txt
+CMakeFiles
+Makefile
+cmake_install.cmake
+CTestTestfile.cmake
+compile_commands.json
