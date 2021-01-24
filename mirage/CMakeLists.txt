@@ -1,2 +1,3 @@
 add_subdirectory(mirage)
 add_subdirectory(mirage_sdl)
+add_subdirectory(mirage_glfw)

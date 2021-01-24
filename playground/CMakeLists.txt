@@ -80,10 +80,12 @@ function(buildExample EXAMPLE_NAME)
     if (EXAMPLE_FOLDER MATCHES "([Gg][Ll][Ff][Ww])")
         message(STATUS "Folder requires GLFW lib to be linked")
 
+        find_package(glfw3 REQUIRED)
+
         target_link_libraries(${EXAMPLE_NAME}
             PRIVATE
-                ${GLFW_LIBRARIES}   # link GLFW
-                mirage_glfw         # link Mirage GLFW utility library
+                glfw                  # link GLFW
+                mirage_glfw           # link Mirage GLFW utility library
         )
 
     endif()
@@ -104,6 +106,7 @@ set(EXAMPLES
     engine
     glm
     vulkan
+    window_glfw
     window_sdl
     # <---- add more examples here
 )
