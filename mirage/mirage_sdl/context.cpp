@@ -2,6 +2,7 @@
 #include "context.hpp"
 
 #include <SDL.h>
+#include <SDL_syswm.h>
 
 namespace Mirage
 {
