@@ -1,28 +1,37 @@
-#include <iostream>
+#define VULKAN_HPP_NO_EXCEPTIONS
+
+#include <cstdio>
+#include <string>
+
 #include <vulkan/vulkan.hpp>
 
-static char const *AppName = "Mirage Rendering Engine";
-static char const *EngineName = "Mirage";
+vk::Instance createVulkanInstance(std::string const &appName,
+                                  std::string const &engineName)
+{
+  uint32_t apiVersion;
+  vkEnumerateInstanceVersion(&apiVersion);
+  std::printf("Vulkan instance version %d.%d.%d\n",
+              VK_VERSION_MAJOR(apiVersion), VK_VERSION_MINOR(apiVersion),
+              VK_VERSION_PATCH(apiVersion));
+
+  vk::ApplicationInfo applicationInfo(appName.c_str(), 1, engineName.c_str(), 1,
+                                      apiVersion);
+  vk::InstanceCreateInfo instanceCreateInfo({}, &applicationInfo);
+  auto [result, instance] = vk::createInstance(instanceCreateInfo);
+  if (result == vk::Result::eSuccess)
+  {
+    std::printf("great stuff!\n");
+  }
+
+  return instance;
+}
 
 int main(int argc, char **argv)
 {
-    // initialize the vk::ApplicationInfo structure
-    vk::ApplicationInfo applicationInfo(
-        // .pApplicationName =
-        AppName,
-        // .applicationVersion =
-        VK_MAKE_VERSION(1, 0, 0),
-        // .pEngineName =
-        EngineName,
-        // .engineVersion =
-        VK_MAKE_VERSION(1, 0, 0),
-        // .apiVersion =
-        VK_API_VERSION_1_1);
-    // initialize the vk::InstanceCreateInfo
-    vk::InstanceCreateInfo instanceCreateInfo({}, &applicationInfo);
-    // create a UniqueInstance
-    vk::UniqueInstance instance = vk::createInstanceUnique(instanceCreateInfo);
-    // log the result
-    std::cout << "Vulkan was initialized\n";
-    return 0;
+  auto instance = createVulkanInstance("Mirage Rendering Engine", "Mirage");
+  // log the result
+  std::printf("Vulkan was initialized\n");
+
+  instance.destroy();
+  return 0;
 }
