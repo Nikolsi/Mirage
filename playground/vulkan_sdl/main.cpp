@@ -1,4 +1,4 @@
-#include <cstdio>
+#include <iostream>
 #include <memory>
 
 #include <mirage/context.hpp>     // Mirage Rendering context interface
@@ -13,7 +13,7 @@ std::shared_ptr<SDL_Window> createApplicationSDL()
 
     return std::shared_ptr<SDL_Window>(
         // window constructor
-        SDL_CreateWindow("Mirage + SDL2", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, window_flags),
+        SDL_CreateWindow("Vulkan + SDL2", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, window_flags),
         // window destructor
         SDL_DestroyWindow);
 }
@@ -23,7 +23,7 @@ int main(int argc, char **argv)
     // setup SDL
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_GAMECONTROLLER) != 0)
     {
-        std::printf("Error: %s\n", SDL_GetError());
+        printf("Error: %s\n", SDL_GetError());
         return 1;
     }
 

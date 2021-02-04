@@ -1,5 +1,5 @@
-#include <iostream>
-#include <vulkan/vulkan.hpp>
+#include <cstdio>
+#include <vector>
 
 #include <mirage/context.hpp>      // Mirage Rendering context interface
 #include <mirage_glfw/context.hpp> // GLFW Rendering context -> Mirage Rendering context.
@@ -24,13 +24,6 @@ int main(int argc, char **argv)
     if (!glfwInit())
     {
         printf("Error: %s\n", "Initialization failed");
-        return 1;
-    }
-
-    // setup Vulkan
-    if (!glfwVulkanSupported())
-    {
-        printf("Error: %s\n", "GLFW Vulkan Not Supported");
         return 1;
     }
 
