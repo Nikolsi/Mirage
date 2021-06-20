@@ -1,5 +1,7 @@
 //
 // TODO: add CMake build support ObjectiveC/C++
+// see: https://stackoverflow.com/questions/20962869/cmakelists-txt-for-an-objective-c-project
+// original: https://gist.github.com/gcatlin/987be74e2d58da96093a7598f3fbfb27
 // cc main.mm -lGLFW -framework AppKit -framework Metal -framework QuartzCore && ./a.out
 //
 #define GLFW_INCLUDE_NONE
