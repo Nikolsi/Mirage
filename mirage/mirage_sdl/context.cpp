@@ -8,7 +8,7 @@ namespace Mirage
 {
     namespace SDL
     {
-        Context::Context(std::shared_ptr<SDL_Window> window) : IContext()
+        Context::Context(std::shared_ptr<SDL_Window> window)
         {
             SDL_SysWMinfo info;         /* initialize System information object */
             SDL_VERSION(&info.version); /* read SDL version */

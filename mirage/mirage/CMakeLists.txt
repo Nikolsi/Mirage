@@ -13,7 +13,6 @@ if(${Vulkan_FOUND})
     target_include_directories(mirage
         PUBLIC
             ../dependencies/glm
-            ../
     )
 
     target_include_directories(mirage

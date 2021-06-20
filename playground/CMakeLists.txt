@@ -49,6 +49,7 @@ function(buildExample EXAMPLE_NAME)
     target_include_directories(${EXAMPLE_NAME}
         PRIVATE
             ../dependencies/glm
+            application
     )
 
     # link dependencies
@@ -103,11 +104,18 @@ endfunction(buildExamples)
 
 # playground apps
 set(EXAMPLES
-    engine
-    glm
-    vulkan
-    window_glfw
-    window_sdl
+    glm         # glm test
+    
+    engine      # no window Mirage API
+
+    vulkan      # no window Vulkan API
+
+    vulkan_glfw # glfw + Vulkan API
+    vulkan_sdl  # sdl + Vulkan API
+
+    window_glfw # glfw + Mirage API
+    window_sdl  # sdl + Mirage API
+
     # <---- add more examples here
 )
 

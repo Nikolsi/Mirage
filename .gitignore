@@ -1,10 +1,12 @@
 # Ignore default build folder
 build/
 .vs/
-.ccls_cache/
+.ccls-cache/
 
 # Ignore files
 **/*.DS_Store
+**/*.dylib
+**/*.out
 
 # Ignore CMake build in root ./
 CMakeCache.txt
