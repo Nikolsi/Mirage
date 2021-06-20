@@ -6,6 +6,7 @@ build/
 # Ignore files
 **/*.DS_Store
 **/*.dylib
+**/*.out
 
 # Ignore CMake build in root ./
 CMakeCache.txt
