@@ -3,8 +3,9 @@
 
 #include <vku/vku.hpp> // Vulkan learning module + <vulkan/vulkan.hpp>
 
-#include <mirage/context.hpp>      // Mirage Rendering context interface
-#include <mirage_glfw/context.hpp> // GLFW Rendering context -> Mirage Rendering context.
+#include <mirage/context.hpp> // Mirage Rendering context interface
+// #include <mirage/engine.hpp>       // Mirage Rendering engine
+#include <mirage_glfw/context.hpp> // GLFW Rendering context -> Mirage Rendering context
 
 #include <GLFW/glfw3.h>
 
@@ -42,15 +43,18 @@ int main(int argc, char **argv)
     // rendering context
     std::shared_ptr<Mirage::IContext> context = Mirage::GLFW::Context::create(window);
 
-    // // rendering engine
-    // auto engine = Mirage::Engine(context);
+    // rendering engine
+    // auto engine = Mirage::Engine::create(context);
 
-    glfwSetKeyCallback(window.get(), [](GLFWwindow *window, int key, int scancode, int action, int mods) {
-        if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+    glfwSetKeyCallback(
+        window.get(),
+        [](GLFWwindow *window, int key, int scancode, int action, int mods)
         {
-            glfwSetWindowShouldClose(window, GLFW_TRUE);
-        }
-    });
+            if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+            {
+                glfwSetWindowShouldClose(window, GLFW_TRUE);
+            }
+        });
 
     // ---- vulkan ----
     // vk::Application

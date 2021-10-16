@@ -13,7 +13,9 @@ namespace Mirage
             SDL_SysWMinfo info;         /* initialize System information object */
             SDL_VERSION(&info.version); /* read SDL version */
 
-            if (SDL_GetWindowWMInfo(window.get(), &info))
+            auto raw_window = window.get();
+
+            if (SDL_GetWindowWMInfo(raw_window, &info))
             {
                 printf("SDL rendering context initialized\n");
             }
