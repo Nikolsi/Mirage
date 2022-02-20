@@ -11,6 +11,9 @@ set(EXAMPLES
     vulkan_glfw # glfw + Vulkan API
     vulkan_sdl  # sdl + Vulkan API
 
+    metal_glfw  # glfw + Metal API (Apple only)
+    metal_sdl   # sdl + Metal API (Apple only)
+
     window_glfw # glfw + Mirage API
     window_sdl  # sdl + Mirage API
 
