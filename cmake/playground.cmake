@@ -15,9 +15,9 @@ function(build_example EXAMPLE_NAME)
     endif()
 
     # link all source files
-    file(GLOB_RECURSE EXAMPLE_APP_SOURCE ${EXAMPLE_FOLDER}/*.cpp ${EXAMPLE_FOLDER}/*.h ${EXAMPLE_FOLDER}/*.hpp)
+    file(GLOB_RECURSE EXAMPLE_APP_SOURCE ${EXAMPLE_FOLDER}/*.cpp ${EXAMPLE_FOLDER}/*.mm ${EXAMPLE_FOLDER}/*.h ${EXAMPLE_FOLDER}/*.hpp)
     # main() entry point
-    if(NOT EXISTS ${EXAMPLE_FOLDER}/main.cpp AND NOT EXISTS ${EXAMPLE_FOLDER}/${EXAMPLE_NAME}.cpp)
+    if(NOT EXISTS ${EXAMPLE_FOLDER}/main.cpp AND NOT EXISTS ${EXAMPLE_FOLDER}/${EXAMPLE_NAME}.cpp AND NOT EXISTS ${EXAMPLE_FOLDER}/main.mm AND NOT EXISTS ${EXAMPLE_FOLDER}/${EXAMPLE_NAME}.mm)
         message(FATAL_ERROR "Project must contain either main.cpp or ${EXAMPLE_NAME}.cpp with the main() function")
     endif()
 
@@ -96,6 +96,20 @@ function(build_example EXAMPLE_NAME)
 
     endif()
 
+    if (APPLE)
+        if(EXAMPLE_FOLDER MATCHES "([Mm][Ee][Tt][Aa][Ll])")
+            message(STATUS "Folder requires Metal and Apple Frameworks")
+            # find_library(COCOA_FRAMEWORK Cocoa)
+            find_library(METAL_FRAMEWORK Metal)
+            find_library(QUARTZ_FRAMEWORK QuartzCore)
+
+            target_link_libraries(${EXAMPLE_NAME}
+                PRIVATE
+                ${METAL_FRAMEWORK}
+                ${QUARTZ_FRAMEWORK}
+            )
+        endif()
+    endif()
 
 endfunction(build_example)
 
