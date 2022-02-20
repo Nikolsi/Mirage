@@ -18,6 +18,7 @@ set(EXAMPLES
     window_sdl  # sdl + Mirage API
 
     # <---- add more examples here
+    swift
 )
 
 build_playground()

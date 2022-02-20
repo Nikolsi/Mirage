@@ -15,7 +15,7 @@ function(build_example EXAMPLE_NAME)
     endif()
 
     # link all source files
-    file(GLOB_RECURSE EXAMPLE_APP_SOURCE ${EXAMPLE_FOLDER}/*.cpp ${EXAMPLE_FOLDER}/*.mm ${EXAMPLE_FOLDER}/*.h ${EXAMPLE_FOLDER}/*.hpp)
+    file(GLOB_RECURSE EXAMPLE_APP_SOURCE ${EXAMPLE_FOLDER}/*.cpp ${EXAMPLE_FOLDER}/*.mm ${EXAMPLE_FOLDER}/*.swift ${EXAMPLE_FOLDER}/*.h ${EXAMPLE_FOLDER}/*.hpp)
     # main() entry point
     if(NOT EXISTS ${EXAMPLE_FOLDER}/main.cpp AND NOT EXISTS ${EXAMPLE_FOLDER}/${EXAMPLE_NAME}.cpp AND NOT EXISTS ${EXAMPLE_FOLDER}/main.mm AND NOT EXISTS ${EXAMPLE_FOLDER}/${EXAMPLE_NAME}.mm)
         message(FATAL_ERROR "Project must contain either main.cpp or ${EXAMPLE_NAME}.cpp with the main() function")
